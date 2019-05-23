@@ -27,7 +27,7 @@ namespace Quan_li_diem_HS_tieu_hoc
         private void frmThemMoiHocSinh_Load(object sender, EventArgs e)
         {
 
-            HienThiLop();
+ 
             if (string.IsNullOrEmpty(MaHS))
             {
                 this.Text = "Thêm mới nhân viên";
@@ -41,16 +41,17 @@ namespace Quan_li_diem_HS_tieu_hoc
             }
         }
 
-            private void HienThiLop()
+          
+            private void HienThiGT()
             {
-                Lop service = new Lop();
-                DataTable dt = service.DsLop();
-                cbLop.DisplayMember = "Lop";
-                cbLop.ValueMember = "Lop";
-                cbLop.DataSource = dt;
+            GT service = new GT();
+            DataTable dt = service.GioiTinh();
+            cbGioiTinh.DisplayMember = "GioiTinh";
+            cbGioiTinh.ValueMember = "GioiTinh";
+            cbGioiTinh.DataSource = dt;
             }
-
-
+            
+         
             private void btnDong_Click(object sender, EventArgs e)
             {
                 this.Close();
@@ -68,11 +69,8 @@ namespace Quan_li_diem_HS_tieu_hoc
                 objHocSinh.Ten = txtTen.Text;
                 objHocSinh.MaHS = txtMaHS.Text;
                 objHocSinh.NgaySinh = dtNgaySinh.Value;
-
-                string Lop = "" + cbLop.SelectedItem;
-                objHocSinh.Lop = Lop;
-
-            string GioiTinh = "" + cbGioiTinh.SelectedItem;
+                objHocSinh.MaLop = txtMaLop.Text;
+               string GioiTinh = "" + cbGioiTinh.SelectedItem;
                 objHocSinh.GioiTinh = GioiTinh;
                 bool ketQua = false;
                 if (Insert)
@@ -102,7 +100,7 @@ namespace Quan_li_diem_HS_tieu_hoc
                     txtHo.Text = objHocSinh.Ho;
                     txtTen.Text = objHocSinh.Ten;
                     txtMaHS.Text = objHocSinh.MaHS;
-                    
+                    txtMaLop.Text = objHocSinh.MaLop;
                     dtNgaySinh.Value = objHocSinh.NgaySinh;
                   
                     cbGioiTinh.SelectedValue = objHocSinh.GioiTinh;
